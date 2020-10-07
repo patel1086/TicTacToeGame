@@ -10,27 +10,30 @@ public class TicTacToeGame{
 		}
 		return gameBoard;	
 	}
-	public static void playerplayfirst()
+	public static String chooseplayer()
 	{
 		System.out.println("Write the play key");
 		Scanner sc1=new Scanner(System.in);
-		turn=sc1.nextLine();
+		turn=sc1.nextLine(); // X is for computer player and O for User player
 		if(turn.equals("X"))
 		{
 			System.out.println("Computer is playing");
+			turn="O";
+			return turn;
 		}
-		else if(turn.equals(0))
+		else 
 		{
 			System.out.println("User is playing");
+			turn="X";
+			return turn;
 		}
-		sc1.close();
 	}
 	public static void main(String[] args)
 	{
 		Scanner sc=new Scanner(System.in);
 		char[] board=createBoard();
 		System.out.println("Welocme to User And Computer Player");
-		playerplayfirst();
+		String turn=chooseplayer();
 		
 		
 		

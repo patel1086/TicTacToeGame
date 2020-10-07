@@ -286,7 +286,7 @@ public class TicTacToeGame{
 	// * UC10 *
 	public static void winnerCondition(char[] board)
 	{
-		if(winner==null)
+		if(winner==null)                                    //we will choose cornor when no one is going to winning
 		{
 			if(board[1]==' ')
 			{
@@ -306,6 +306,11 @@ public class TicTacToeGame{
 			else if(board[9]==' ')
 			{
 				numInput=9;
+				return;
+			}
+			else if(board[5]==' ')                            // we will choose center when no one is going to win and there is no cornor available
+			{
+				numInput=5;
 				return;
 			}
 				

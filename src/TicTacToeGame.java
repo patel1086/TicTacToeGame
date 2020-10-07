@@ -48,7 +48,6 @@ public class TicTacToeGame{
 		Scanner input=new Scanner(System.in);
 		String winner = null;
 		int numInput;
-		//int j=0;
 		if(firstplayer==true)                                            //if get true then computer will start first 
 		{
 			turn='X';
@@ -73,7 +72,12 @@ public class TicTacToeGame{
 			} else {
 				turn = 'X';
 		      } 
-			winner = checkWinner(board);          // we will check the winner through this method
+			winner = checkWinner(board);                                    // we will check the winner through this method
+			if(winner=="User") {
+				moveToComputerWin(board,numInput);                          // if User is winning by taking any particular position than computer will follow that one to win purpose
+				winner=null;
+			}
+				
 		  }
 		   else 
 		   {
@@ -98,39 +102,37 @@ public class TicTacToeGame{
 	{
 		for(int a=0;a<8;a++)
 		{
-			StringBuilder sb = new StringBuilder();
-			String line;
+			String line = null;
 			switch (a) {
-			case 0:
+			case 0:{
 				line = Character.toString(board[1])+ Character.toString(board[2])+Character.toString(board[3]);
-				break;
-			case 1:
+				break;}
+			case 1:{
 				line = Character.toString(board[4])+ Character.toString(board[5])+Character.toString(board[6]);
-				break;
-			case 2:
+				break;}
+			case 2:{
 				line =Character.toString(board[7])+ Character.toString(board[8])+Character.toString(board[9]);
-				break;
-			case 3:
+				break;}
+			case 3:{
 				line =Character.toString(board[1])+ Character.toString(board[4])+Character.toString(board[7]);
-				break;
-			case 4:
+				break;}
+			case 4:{
 				line = Character.toString(board[2])+ Character.toString(board[5])+Character.toString(board[8]);
-				break;
-			case 5:
+				break;}
+			case 5:{
 				line = Character.toString(board[3])+ Character.toString(board[6])+Character.toString(board[9]);
-				break;
-			case 6:
+				break;}
+			case 6:{
 				line =Character.toString(board[1])+ Character.toString(board[5])+Character.toString(board[9]);
-				break;
-			case 7:
-				{line = Character.toString(board[3])+ Character.toString(board[5])+Character.toString(board[7]);
-				System.out.println("String is: "+line);
-				break;
-				}
+				break;}
+			case 7:{
+				line = Character.toString(board[3])+ Character.toString(board[5])+Character.toString(board[7]);
+				break;}
+				
 			}
-			if (sb.equals("XXX")) {                            //if we get 3 consecutive XXX in any diagonal and straight row then computer will win
+			if (line.equals("XXX")) {                            //if we get 3 consecutive XXX in any diagonal and straight row then computer will win
 				return "Computer";
-			} else if (sb.equals("OOO")) {
+			} else if (line.equals("OOO")) {
 				return "User";                                 //if we get 3 consecutive OOO in any diagonal and straight row then user will win
 			}
 		}
@@ -141,8 +143,13 @@ public class TicTacToeGame{
 			else if (a == 8) return "draw";                   //if we not get any 3 consecutive XXX and OOO in any diagonal and straight row then the game is draw
 		}
 
-		System.out.println(turn + " turn; enter a slot number to place " + turn + " in:");
+		System.out.println(turn + " enter a slot number to place " + turn + " in:");
 		return null;
+	}
+	// * UC8 * 
+	public static void moveToComputerWin(char[] board,int numInput)
+	{
+		board[numInput]='X';
 	}
 	public static void main(String[] args)
 	{

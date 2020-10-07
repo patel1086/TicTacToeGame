@@ -5,7 +5,7 @@ public class TicTacToeGame{
 	static String line = null;
 	static int numInput;
 	static String winner = null;
-	// * UC1 *
+	// * Method to create empty Board Game of 9*9 *
 	public static char[] createBoard()
 	{
 		char[] gameBoard=new char[10];
@@ -15,7 +15,7 @@ public class TicTacToeGame{
 		}
 		return gameBoard;	
 	}
-	// * UC2 *
+	// * Method to choose player turn *
 	public static char choosePlayerTurn()
 	{
 		System.out.println("Write the play key");
@@ -34,7 +34,7 @@ public class TicTacToeGame{
 			return turn;
 		}
 	}
-	// * UC3 *
+	// * Method to show Game Board *
 	public static void showBoard(char [] board)
 	{
 		System.out.println("/---|---|---\\");
@@ -45,7 +45,7 @@ public class TicTacToeGame{
 		System.out.println("| " + board[7] + " | " + board[8] + " | " + board[9] + " |");
 		System.out.println("/---|---|---\\");
 	}
-	// * UC4 *
+	// * Method for move to desired location *
 	public static void moveToDesiredLocation(char[] board,boolean firstplayer)
 	{
 		Scanner input=new Scanner(System.in);
@@ -59,9 +59,10 @@ public class TicTacToeGame{
 		{
 			System.out.println("Please enter a number between 1 to 9");
 			numInput = input.nextInt();
-			winnerCondition(board);
+			winnerCondition(board);                                     //method for winning conditions (1)Cornor Condition(2) center condition
 			if(turn=='O')
 			   numInput=blockOponentToNotWin(numInput,board);           //method for blocking the opponot's win position
+			
 			if (!(numInput> 0 && numInput<= 9))                             // check the input is between 1 to 9 or not
 		      {
 			       System.out.println("Invalid input; re-enter slot number:");
@@ -69,17 +70,15 @@ public class TicTacToeGame{
 			
 	          }
 		    else if (board[numInput]==' ') {
-			board[numInput] = turn;
-			showBoard(board);
-			if (turn=='X') {
-				turn = 'O';
-			} else {
-				turn = 'X';
-		      } 
-			winner = checkWinner(board);                                    // we will check the winner through this method
-			
-				
-		  }
+		    		board[numInput] = turn;
+		    		showBoard(board);
+		    			if (turn=='X') {
+		    				turn = 'O';
+		    			} else {
+		    				turn = 'X';
+		    			} 
+		    		winner = checkWinner(board);                                    // we will check the winner through this method
+			 }
 		   else 
 		   {
 				System.out.println("Slot already taken; re-enter slot number:");
@@ -87,18 +86,18 @@ public class TicTacToeGame{
 			    continue;
 	        }
 	     }
-		  if (winner.equalsIgnoreCase("draw")) {
+		 if (winner.equalsIgnoreCase("draw")) {
 			     System.out.println("It's a draw! Thanks for playing.");
 		   } else {
 			    System.out.println("Congratulations! " + winner + "'s have won! Thanks for playing.");
 		      }
 	}
-	// * UC6 *
+	// * Random true for computer and false for user to start the game *
 	public static boolean startGame() {
 		 Random random = new Random();
 		   return random.nextBoolean();
 	}
-	// * UC7 *
+	// * check the winner between user and computer *
 	public static String checkWinner(char[] board)
 	{
 		for(int a=0;a<8;a++)
@@ -140,19 +139,17 @@ public class TicTacToeGame{
 		for (int a = 0; a < 9; a++) {
 			if(board[a]==' ') {
 				break;
-			}
-			else if (a == 8) return "draw";                   //if we not get any 3 consecutive XXX and OOO in any diagonal and straight row then the game is draw
+			 }else if (a == 8) return "draw";                   //if we not get any 3 consecutive XXX and OOO in any diagonal and straight row then the game is draw
 		}
 
 		System.out.println(turn + " enter a slot number to place " + turn + " in:");
 		return null;
 	}
-	// * UC8 * 
 	public static void moveToComputerWin(char[] board,int numInput)
 	{
 		board[numInput]='X';
 	}
-	// * UC9 *
+	// * do block the position of opponont if he is goining to win *
 	public static int blockOponentToNotWin(int numInput,char[] board)
 	{
 		for(int a=0;a<8;a++)
@@ -325,6 +322,7 @@ public class TicTacToeGame{
 	//  Main
 	public static void main(String[] args)
 	{
+		while(true) {
 		Scanner userinput=new Scanner(System.in);
 		char[] board=createBoard();                                      //Method for creating Empty board for game
 		System.out.println("Welocme to User And Computer Player");
@@ -332,7 +330,7 @@ public class TicTacToeGame{
 		showBoard(board);                                                //Method to show board of Tic Tac Toe Toe toe game
 		Boolean firstplayer=startGame();                                 //Method to get randomly which one will start first
 		System.out.println("We get randomly this "+firstplayer);
-		moveToDesiredLocation(board,firstplayer);                        //Method to go desired location to user in game
-		
+		moveToDesiredLocation(board,firstplayer);                       //Method to go desired location to user in game
+		}
     }
 }

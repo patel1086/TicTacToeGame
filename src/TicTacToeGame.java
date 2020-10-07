@@ -43,11 +43,17 @@ public class TicTacToeGame{
 		System.out.println("/---|---|---\\");
 	}
 	// * UC4 *
-	public static void moveToDesiredLocation(char[] board)
+	public static void moveToDesiredLocation(char[] board,boolean firstplayer)
 	{
 		Scanner input=new Scanner(System.in);
 		int numInput;
 		//int j=0;
+		if(firstplayer==true) //if get true then computer will start first 
+		{
+			turn='X';
+		}
+		else                  //if get false then user will start first
+			turn='O';
 		while(true) {
 		System.out.println("Please enter a number between 1 to 9");
 		numInput = input.nextInt();
@@ -74,6 +80,11 @@ public class TicTacToeGame{
 	        }
 	   }
 	}
+	// * UC6 *
+	public static boolean startGame() {
+		 Random random = new Random();
+		   return random.nextBoolean();
+	}
 	public static void main(String[] args)
 	{
 		Scanner userinput=new Scanner(System.in);
@@ -81,6 +92,9 @@ public class TicTacToeGame{
 		System.out.println("Welocme to User And Computer Player");
 		char turn=choosePlayerTurn(); //Method for choose player turn
 		showBoard(board); //Method to show board of Tic Tac Toe Toe toe game
-		moveToDesiredLocation(board); //Method to go desired location to user in game
+		Boolean firstplayer=startGame(); //Method to get randomly which one will start first
+		System.out.println("We get randomly this "+firstplayer);
+		moveToDesiredLocation(board,firstplayer); //Method to go desired location to user in game
+		
     }
 }

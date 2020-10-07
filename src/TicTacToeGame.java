@@ -283,7 +283,7 @@ public class TicTacToeGame{
 		}
 		return numInput;
     }
-	// * UC10 *
+	// * Winner Condition for cornor cases *
 	public static void winnerCondition(char[] board)
 	{
 		if(winner==null)                                    //we will choose cornor when no one is going to winning
@@ -322,7 +322,7 @@ public class TicTacToeGame{
 		}
 	}
 	
-	
+	//  Main
 	public static void main(String[] args)
 	{
 		Scanner userinput=new Scanner(System.in);

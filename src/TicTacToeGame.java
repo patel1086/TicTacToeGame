@@ -58,7 +58,11 @@ public class TicTacToeGame{
 		while(winner == null) 
 		{
 			System.out.println("Please enter a number between 1 to 9");
-			numInput = input.nextInt();
+			if(turn=='O') numInput = input.nextInt();
+			else {
+				Random rand = new Random();
+				numInput=rand.nextInt((9 - 1) + 1) + 1;
+			}
 			winnerCondition(board);                                     //method for winning conditions (1)Cornor Condition(2) center condition
 			if(turn=='O')
 			   numInput=blockOponentToNotWin(numInput,board);           //method for blocking the opponot's win position
